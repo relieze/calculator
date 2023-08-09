@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  box-sizing: border-box;
+}
+
+div {
+  margin: 10px;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
+}
+
+h1 {
+  /* width: 100%; */
+  flex-basis: 10%;
+  margin: 10px;
+}
+
+.screen {
+  /* width: 100%; */
+  flex-basis: 24%;
+}
+
+.power {
+  /* width: 100%; */
+  flex-basis: 11%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.input {
+  /* width: 100%; */
+  flex-basis: 66%;
+  display: flex;
+}
+
+.leftSide {
+  flex-basis: 75%;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+}
+
+.special {
+  /* width: 100%; */
+  flex-basis: 20%;
+  display: flex;
+}
+
+.numbers {
+  /* width: 100%; */
+  flex-basis: 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.operators {
+  flex-basis: 25%;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+.calculator {
+  background-color: lightblue;
+}
+
+h1 {
+  background-color: bisque;
+}
+
+.screen {
+  background-color: burlywood;
+}
+
+.power {
+  background-color: lightgreen;
+}
+
+.input {
+  background-color: bisque;
+}
+
+.leftSide {
+  background-color: lightblue;
+}
+
+.special {
+  background-color: burlywood;
+}
+
+.numbers {
+  background-color: lightgreen;
+}
+
+.operators {
+  background-color: lightgreen;
+}
