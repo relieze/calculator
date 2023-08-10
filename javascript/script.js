@@ -1,21 +1,26 @@
 const header = document.querySelector("h1");
 const screen = document.querySelector(".screen");
 const buttons = document.querySelectorAll("button");
-const numberbtns = document.querySelectorAll(".number");
-const operatorbtns = document.querySelectorAll(".operators button");
-const equalsbtn = document.querySelector(".equals");
+const numberBtns = document.querySelectorAll(".number");
+const operatorsDiv = document.querySelector(".operators")
+const operatorBtns = document.querySelectorAll(".operators button");
+const equalsBtn = document.querySelector(".equals");
 
 let num1 = "";
 let num2 = "";
 let operator = "";
 let answer = "";
 
-numberbtns.forEach(btn => {
+numberBtns.forEach(btn => {
   btn.addEventListener("click", () => {
-    if (equalsbtn.classList.contains("on")) {
-      equalsbtn.classList.remove("on");
+    if (equalsBtn.classList.contains("on")) {
+      equalsBtn.classList.remove("on");
       screen.textContent = btn.textContent;
       num1 = +screen.textContent;
+    } else if (operatorsDiv.classList.contains("on")) {
+      operatorsDiv.classList.remove("on");
+      screen.textContent = btn.textContent;
+      num2 = +screen.textContent;
     } else if (screen.textContent.length < 9 && operator === "") {
       screen.textContent += btn.textContent;
       num1 = +screen.textContent;
@@ -29,27 +34,37 @@ numberbtns.forEach(btn => {
   })
 })
 
-operatorbtns.forEach(btn => {
+operatorBtns.forEach(btn => {
   btn.addEventListener("click", () => {
     if (num1 !== "" && num2 === "") {
       screen.textContent = btn.textContent;
       operator = btn.textContent;
+    } else if (num1 !== "" && num2 !== "") {
+      evaluate();
+      operatorsDiv.classList.add("on");
+      operator = btn.textContent;
+      num1 = answer;
+      num2 = "";
     }
   })
 })
 
-equalsbtn.addEventListener("click", () => {
+equalsBtn.addEventListener("click", () => {
+  evaluate();
+  equalsBtn.classList.add("on");
+  num1 = "";
+  num2 = "";
+  operator = "";
+})
+
+function evaluate() {
   if (num1 !== "" && operator === "÷" && num2 === 0) {
     screen.textContent = "Haha, nice try: Infinity";
   } else if (num1 !== "" && num2 !== "" && operator) {
     answer = operate(num1, num2, operator);
     screen.textContent = answer;
   }
-  equalsbtn.classList.add("on");
-  num1 = "";
-  num2 = "";
-  operator = "";
-})
+}
 
 function add(num1, num2) {
   return +num1 + +num2;
