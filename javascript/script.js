@@ -45,6 +45,12 @@ operatorBtns.forEach(btn => {
       operator = btn.textContent;
       num1 = answer;
       num2 = "";
+    } else if (equalsBtn.classList.contains("on")) {
+      equalsBtn.classList.remove("on");
+      operatorsDiv.classList.add("on");
+      operator = btn.textContent;
+      num1 = answer;
+      num2 = "";
     }
   })
 })
