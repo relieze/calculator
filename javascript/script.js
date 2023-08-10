@@ -1,12 +1,22 @@
+const header = document.querySelector("h1");
+const screen = document.querySelector(".screen");
+const numberbtns = document.querySelectorAll(".number");
+const operatorbtns = document.querySelectorAll(".operators button");
+const equalsbtn = document.querySelector(".equals");
+
 let num1 = 0;
 let num2 = 0;
 let operator = "";
 
-num1 = prompt("num1:")
-operator = prompt("operator:")
-num2 = prompt("num2:")
+numberbtns.forEach(btn => {
+  btn.addEventListener("click", event => {
+    if (screen.textContent.length < 9 ) {
+      screen.textContent += event.target.textContent;
+      num1 = +screen.textContent;
+    }
+  })
+})
 
-operate(num1, num2, operator);
 
 function add(num1, num2) {
   return +num1 + +num2;
@@ -24,17 +34,13 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 
-console.log(num1 + " " + operator + " " + num2);
+header.textContent = num1 + " " + operator + " " + num2; // just to see, not permanent
 
 function operate(num1, num2, operator) {
   switch(operator) {
-    case("+"):  console.log(add(num1, num2));
-                break;
-    case("-"):  console.log(subtract(num1, num2));
-                break;
-    case("*"):  console.log(multiply(num1, num2));
-                break;
-    case("/"):  console.log(divide(num1, num2));
-                break;
+    case("+"):  return add(num1, num2);
+    case("-"):  return subtract(num1, num2);
+    case("*"):  return multiply(num1, num2);
+    case("/"):  return divide(num1, num2);
   }
 }
