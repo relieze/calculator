@@ -1,4 +1,5 @@
-const header = document.querySelector("h1");
+const answerLog = document.querySelector(".answer");
+const expressionLog = document.querySelector(".expression");
 const screen = document.querySelector(".screen");
 const buttons = document.querySelectorAll("button");
 const numberBtns = document.querySelectorAll(".number");
@@ -13,15 +14,17 @@ let answer = "";
 
 numberBtns.forEach(btn => {
   btn.addEventListener("click", () => {
-    if (equalsBtn.classList.contains("on")) {
+    if (equalsBtn.classList.contains("on") || equalsBtn.classList.contains("error")) {
       equalsBtn.classList.remove("on");
+      equalsBtn.classList.remove("error");
       screen.textContent = btn.textContent;
+      screen.style.fontSize = "4.5rem";
       num1 = +screen.textContent;
     } else if (operatorsDiv.classList.contains("on")) {
       operatorsDiv.classList.remove("on");
       screen.textContent = btn.textContent;
       num2 = +screen.textContent;
-    } else if (screen.textContent.length < 9 && operator === "") {
+    } else if ( screen.textContent.length < 9 && operator === "") {
       screen.textContent += btn.textContent;
       num1 = +screen.textContent;
     } else if (screen.textContent === operator) {
@@ -56,16 +59,20 @@ operatorBtns.forEach(btn => {
 })
 
 equalsBtn.addEventListener("click", () => {
-  evaluate();
-  equalsBtn.classList.add("on");
-  num1 = "";
-  num2 = "";
-  operator = "";
+  if (num1 !== "" && num2 !== "" && operator !== "") {
+    evaluate();
+    if (!(equalsBtn.classList.contains("error"))) equalsBtn.classList.add("on");
+    num1 = "";
+    num2 = "";
+    operator = "";
+  }
 })
 
 function evaluate() {
   if (num1 !== "" && operator === "÷" && num2 === 0) {
-    screen.textContent = "Haha, nice try: Infinity";
+    screen.style.fontSize = "2.5rem";
+    screen.textContent = "Haha, nice try: Can't Divide by 0";
+    equalsBtn.classList.add("error");
   } else if (num1 !== "" && num2 !== "" && operator) {
     answer = operate(num1, num2, operator);
     screen.textContent = answer;
@@ -101,6 +108,7 @@ function operate(num1, num2, operator) {
 
 buttons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    header.textContent = num1 + " " + operator + " " + num2 + " = " + answer; 
+    answerLog.textContent ="Ans: " + answer; 
+    expressionLog.textContent = num1 + " " + operator + " " + num2;
   });
 })

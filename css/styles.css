@@ -1,6 +1,8 @@
 * {
   margin: 0;
   padding: 0;
+  /* border: 0; */
+  text-decoration: none;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   box-sizing: border-box;
 }
@@ -14,15 +16,23 @@
   height: 520px;
 }
 
-h1 {
-  flex-basis: 10%;
-  margin: 0 auto;
+.top {
+  display: flex;
+}
+
+p.answer, p.expression {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+p.expression {
+  margin: 0 0 0 auto;
 }
 
 .screen {
   padding: 0 5px 15px 0;
-  flex-basis: 24%;
-  font-size: 4rem;
+  flex: 1;
+  font-size: 4.5rem;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -43,30 +53,28 @@ h1 {
 .input {
   flex-basis: 55%;
   display: flex;
-  justify-content: space-between;
 }
 
 .leftSide {
   flex-basis: 76%;
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
 }
 
 .operators {
   flex-basis: 24%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
 }
 
 button {
   width: 96px;
   height: 50px;
+  font-size: 2rem;
 }
 
 .power button {
-  margin-left: 5px;
+  margin: 0 0 5px 6px;
 }
 
 .leftSide button {
@@ -82,12 +90,15 @@ button.add {
   height: 105px;
 }
 
-/* 
+
 .calculator {
   background-color: lightblue;
 }
 
-h1 {
+
+/* 
+
+.top {
   background-color: bisque;
 }
 
@@ -104,4 +115,6 @@ h1 {
 }
 .operators {
   background-color: cornflowerblue;
-} */
+}  
+
+*/
