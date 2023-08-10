@@ -17,8 +17,8 @@ numberBtns.forEach(btn => {
     if (equalsBtn.classList.contains("on") || equalsBtn.classList.contains("error")) {
       equalsBtn.classList.remove("on");
       equalsBtn.classList.remove("error");
-      screen.textContent = btn.textContent;
       screen.style.fontSize = "4.5rem";
+      screen.textContent = btn.textContent;
       num1 = +screen.textContent;
     } else if (operatorsDiv.classList.contains("on")) {
       operatorsDiv.classList.remove("on");
@@ -44,13 +44,23 @@ operatorBtns.forEach(btn => {
       operator = btn.textContent;
     } else if (num1 !== "" && num2 !== "") {
       evaluate();
-      operatorsDiv.classList.add("on");
-      operator = btn.textContent;
-      num1 = answer;
-      num2 = "";
-    } else if (equalsBtn.classList.contains("on")) {
+      if (!equalsBtn.classList.contains("error")) {
+        operatorsDiv.classList.add("on");
+        operator = btn.textContent;
+        num1 = answer;
+        num2 = "";
+      } else {
+        num1 = "";
+        num2 = "";
+        operator = "";
+      }
+    } else if ( equalsBtn.classList.contains("on") || 
+                equalsBtn.classList.contains("error")) {
       equalsBtn.classList.remove("on");
+      equalsBtn.classList.remove("error")
       operatorsDiv.classList.add("on");
+      screen.style.fontSize = "4.5rem";
+      screen.textContent = btn.textContent;
       operator = btn.textContent;
       num1 = answer;
       num2 = "";
