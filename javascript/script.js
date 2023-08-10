@@ -5,8 +5,8 @@ const numberbtns = document.querySelectorAll(".number");
 const operatorbtns = document.querySelectorAll(".operators button");
 const equalsbtn = document.querySelector(".equals");
 
-let num1 = 0;
-let num2 = 0;
+let num1 = "";
+let num2 = "";
 let operator = "";
 let answer = "";
 
@@ -31,7 +31,7 @@ numberbtns.forEach(btn => {
 
 operatorbtns.forEach(btn => {
   btn.addEventListener("click", () => {
-    if (num1 != 0 && num2 === 0) {
+    if (num1 !== "" && num2 === "") {
       screen.textContent = btn.textContent;
       operator = btn.textContent;
     }
@@ -39,14 +39,16 @@ operatorbtns.forEach(btn => {
 })
 
 equalsbtn.addEventListener("click", () => {
-  if (num1 && num2 && operator) {
+  if (num1 !== "" && operator === "÷" && num2 === 0) {
+    screen.textContent = "Haha, nice try: Infinity";
+  } else if (num1 !== "" && num2 !== "" && operator) {
     answer = operate(num1, num2, operator);
     screen.textContent = answer;
-    equalsbtn.classList.toggle("on");
-    num1 = 0;
-    num2 = 0;
-    operator = "";
   }
+  equalsbtn.classList.add("on");
+  num1 = "";
+  num2 = "";
+  operator = "";
 })
 
 function add(num1, num2) {
