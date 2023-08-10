@@ -15,23 +15,24 @@ let answer = "";
 
 numberBtns.forEach(btn => {
   btn.addEventListener("click", () => {
-    if (equalsBtn.classList.contains("on") || equalsBtn.classList.contains("error")) {
+    if (equalsBtn.classList.contains("on") ||             // right after equals button is pressed
+        equalsBtn.classList.contains("error")) {          // in the case that it is after /0 error message
       equalsBtn.classList.remove("on");
       equalsBtn.classList.remove("error");
       screen.style.fontSize = "4.5rem";
       screen.textContent = btn.textContent;
       num1 = +screen.textContent;
-    } else if (operatorsDiv.classList.contains("on")) {
-      operatorsDiv.classList.remove("on");
+    } else if (operatorsDiv.classList.contains("chain")) {// right after a chaining operator is pressed
+      operatorsDiv.classList.remove("chain");
       screen.textContent = btn.textContent;
       num2 = +screen.textContent;
-    } else if ( screen.textContent.length < 9 && operator === "") {
+    } else if ( screen.textContent.length < 9 && operator === "") { // there is no operator, so must be num1
       screen.textContent += btn.textContent;
       num1 = +screen.textContent;
-    } else if (screen.textContent === operator) {
+    } else if (screen.textContent === operator) {         // right after an operator is pressed
       screen.textContent = btn.textContent;
       num2 = +screen.textContent;
-    } else if (screen.textContent.length < 9) {
+    } else if (screen.textContent.length < 9) {           // if user isn't done inputting to num2
       screen.textContent += btn.textContent;
       num2 = +screen.textContent;
     }
@@ -40,26 +41,30 @@ numberBtns.forEach(btn => {
 
 operatorBtns.forEach(btn => {
   btn.addEventListener("click", () => {
-    if (num1 !== "" && num2 === "") {
+    if (num1 !== "" && num2 === "") {                     // only first number exists - regular
+      toggleOperator(btn);
       screen.textContent = btn.textContent;
       operator = btn.textContent;
-    } else if (num1 !== "" && num2 !== "") {
+    } else if (num1 !== "" && num2 !== "") {              // both numbers exist
       evaluate();
-      if (!equalsBtn.classList.contains("error")) {
-        operatorsDiv.classList.add("on");
+      if (!equalsBtn.classList.contains("error")) {       // chaining operations
+        operatorsDiv.classList.add("chain");
+        toggleOperator(btn);
         operator = btn.textContent;
         num1 = answer;
         num2 = "";
-      } else {
+      } else {                                            // in the case that evaluation leads to /0 error
+        toggleOperator();
         num1 = "";
         num2 = "";
         operator = "";
       }
-    } else if ( equalsBtn.classList.contains("on") || 
-                equalsBtn.classList.contains("error")) {
+    } else if ( equalsBtn.classList.contains("on") ||     // right after equals button is pressed
+                equalsBtn.classList.contains("error")) {  // in the case that it is after /0 error message
       equalsBtn.classList.remove("on");
       equalsBtn.classList.remove("error")
-      operatorsDiv.classList.add("on");
+      operatorsDiv.classList.add("chain");
+      toggleOperator(btn);
       screen.style.fontSize = "4.5rem";
       screen.textContent = btn.textContent;
       operator = btn.textContent;
@@ -71,6 +76,7 @@ operatorBtns.forEach(btn => {
 
 equalsBtn.addEventListener("click", () => {
   if (num1 !== "" && num2 !== "" && operator !== "") {
+    toggleOperator();
     evaluate();
     if (!(equalsBtn.classList.contains("error"))) equalsBtn.classList.add("on");
     num1 = "";
@@ -86,12 +92,20 @@ clearAllBtn.addEventListener("click", () => {
   answer = "";
   equalsBtn.classList.remove("on");
   equalsBtn.classList.remove("error");
-  operatorsDiv.classList.remove("on");
+  operatorsDiv.classList.remove("chain");
+  toggleOperator();
   screen.textContent = "";
   screen.style.fontSize = "4.5rem";
   answerLog.textContent = "CALCULATOR";
   expressionLog.textContent = "";
 })
+
+function toggleOperator(operator = "none") {
+  operatorBtns.forEach(btn => {
+    if (btn === operator) btn.classList.add("on");
+    else btn.classList.remove("on");
+  })
+}
 
 function evaluate() {
   if (num1 !== "" && operator === "÷" && num2 === 0) {
@@ -139,3 +153,4 @@ buttons.forEach((btn) => {
     });
   }
 })
+

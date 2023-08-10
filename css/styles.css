@@ -101,6 +101,9 @@ button.add {
   background-color: lightblue;
 }
 
+button.on {
+  background-color: red;
+}
 
 /* 
 
