@@ -6,6 +6,7 @@ const numberBtns = document.querySelectorAll(".number");
 const operatorsDiv = document.querySelector(".operators")
 const operatorBtns = document.querySelectorAll(".operators button");
 const equalsBtn = document.querySelector(".equals");
+const clearAllBtn = document.querySelector(".clearAll");
 
 let num1 = "";
 let num2 = "";
@@ -78,6 +79,20 @@ equalsBtn.addEventListener("click", () => {
   }
 })
 
+clearAllBtn.addEventListener("click", () => {
+  num1 = "";
+  num2 = "";
+  operator = "";
+  answer = "";
+  equalsBtn.classList.remove("on");
+  equalsBtn.classList.remove("error");
+  operatorsDiv.classList.remove("on");
+  screen.textContent = "";
+  screen.style.fontSize = "4.5rem";
+  answerLog.textContent = "CALCULATOR";
+  expressionLog.textContent = "";
+})
+
 function evaluate() {
   if (num1 !== "" && operator === "÷" && num2 === 0) {
     screen.style.fontSize = "2.5rem";
@@ -117,8 +132,10 @@ function operate(num1, num2, operator) {
 // just to see, for dubugging purposes, not permanent
 
 buttons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    answerLog.textContent ="Ans: " + answer; 
-    expressionLog.textContent = num1 + " " + operator + " " + num2;
-  });
+  if (btn != clearAllBtn) {
+    btn.addEventListener("click", () => {
+      answerLog.textContent ="Ans: " + answer; 
+      expressionLog.textContent = num1 + " " + operator + " " + num2;
+    });
+  }
 })
