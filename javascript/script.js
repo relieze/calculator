@@ -10,13 +10,27 @@ let operator = "";
 
 numberbtns.forEach(btn => {
   btn.addEventListener("click", event => {
-    if (screen.textContent.length < 9 ) {
+    if (screen.textContent.length < 9 && operator === "") {
       screen.textContent += event.target.textContent;
       num1 = +screen.textContent;
+    } else if (screen.textContent === operator) {
+      screen.textContent = event.target.textContent;
+      num2 = +screen.textContent;
+    } else if (screen.textContent.length < 9) {
+      screen.textContent += event.target.textContent;
+      num2 = +screen.textContent;
     }
   })
 })
 
+operatorbtns.forEach(btn => {
+  btn.addEventListener("click", event => {
+    if (num2 === 0) {
+      screen.textContent = event.target.textContent;
+      operator = btn.textContent;
+    }
+  })
+})
 
 function add(num1, num2) {
   return +num1 + +num2;
