@@ -20,12 +20,12 @@
   display: flex;
 }
 
-p.answer, p.expression {
+p.prevAnswer, p.expression {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-p.answer {
+p.prevAnswer {
   margin-right: auto;
   white-space: nowrap;
 }

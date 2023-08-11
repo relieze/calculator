@@ -1,17 +1,62 @@
-const answerLog = document.querySelector(".answer");
+// display
+const answerLog = document.querySelector(".prevAnswer");
 const expressionLog = document.querySelector(".expression");
 const screen = document.querySelector(".screen");
+
+// regular number and operation buttons
 const buttons = document.querySelectorAll("button");
 const numberBtns = document.querySelectorAll(".number");
 const operatorsDiv = document.querySelector(".operators")
 const operatorBtns = document.querySelectorAll(".operators button");
 const equalsBtn = document.querySelector(".equals");
+
+// special buttons
+const decimalBtn = document.querySelector(".clear");
+const sqrtBtn = document.querySelector(".sqrt");
+const percentBtn = document.querySelector(".percent");
+
+// previous-answer and clear buttons
+const answerBtn = document.querySelector(".answer");
+const clearBtn = document.querySelector(".clear");
 const clearAllBtn = document.querySelector(".clearAll");
 
 let num1 = "";
 let num2 = "";
 let operator = "";
 let answer = "";
+
+// regular operation functions
+const add = (num1, num2) => +num1 + +num2;
+const subtract = (num1, num2) => num1 - num2;
+const multiply = (num1, num2) => num1 * num2;
+const divide = (num1, num2) => num1 / num2;
+
+function operate(num1, num2, operator) {
+  switch(operator) {
+    case("+"):  return add(num1, num2);
+    case("-"):  return subtract(num1, num2);
+    case("x"):  return multiply(num1, num2);
+    case("÷"):  return divide(num1, num2);
+  }
+}
+
+function evaluate() {
+  if (num1 !== "" && operator === "÷" && num2 === 0) {
+    screen.style.fontSize = "2.5rem";
+    screen.textContent = "Haha, nice try: Can't Divide by 0";
+    equalsBtn.classList.add("error");
+  } else if (num1 !== "" && num2 !== "" && operator) {
+    answer = operate(num1, num2, operator);
+    screen.textContent = answer;
+  }
+}
+
+function toggleOperator(operator = "none") {
+  operatorBtns.forEach(btn => {
+    if (btn === operator) btn.classList.add("on");
+    else btn.classList.remove("on");
+  })
+}
 
 numberBtns.forEach(btn => {
   btn.addEventListener("click", () => {
@@ -85,6 +130,22 @@ equalsBtn.addEventListener("click", () => {
   }
 })
 
+answerBtn.addEventListener("click", () => {
+  if (answer !== "") {
+  if (operator !== "") {
+    operatorsDiv.classList.remove("chain");
+    screen.textContent = answer;
+    num2 = answer;
+  } else {
+    equalsBtn.classList.remove("on");
+    equalsBtn.classList.remove("error");
+    screen.style.fontSize = "4.5rem";
+    screen.textContent = answer;
+    num1 = answer;
+    }
+  }
+})
+
 clearAllBtn.addEventListener("click", () => {
   num1 = "";
   num2 = "";
@@ -100,48 +161,7 @@ clearAllBtn.addEventListener("click", () => {
   expressionLog.textContent = "";
 })
 
-function toggleOperator(operator = "none") {
-  operatorBtns.forEach(btn => {
-    if (btn === operator) btn.classList.add("on");
-    else btn.classList.remove("on");
-  })
-}
 
-function evaluate() {
-  if (num1 !== "" && operator === "÷" && num2 === 0) {
-    screen.style.fontSize = "2.5rem";
-    screen.textContent = "Haha, nice try: Can't Divide by 0";
-    equalsBtn.classList.add("error");
-  } else if (num1 !== "" && num2 !== "" && operator) {
-    answer = operate(num1, num2, operator);
-    screen.textContent = answer;
-  }
-}
-
-function add(num1, num2) {
-  return +num1 + +num2;
-}
-
-function subtract(num1, num2) {
-  return num1 - num2;
-}
-
-function multiply(num1, num2) {
-  return num1 * num2;
-}
-
-function divide(num1, num2) {
-  return num1 / num2;
-}
-
-function operate(num1, num2, operator) {
-  switch(operator) {
-    case("+"):  return add(num1, num2);
-    case("-"):  return subtract(num1, num2);
-    case("x"):  return multiply(num1, num2);
-    case("÷"):  return divide(num1, num2);
-  }
-}
 
 // just to see, for dubugging purposes, not permanent
 
