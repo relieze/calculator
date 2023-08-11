@@ -45,8 +45,16 @@ function evaluate() {
     screen.style.fontSize = "2.5rem";
     screen.textContent = "Haha, nice try: Can't Divide by 0";
     equalsBtn.classList.add("error");
+  } else if (!isFinite(operate(num1, num2, operator))) {
+    screen.style.fontSize = "2.5rem";
+    screen.textContent = "To Infinity and Beyond!!! (Too large!)";
+    equalsBtn.classList.add("error");
   } else if (num1 !== "" && num2 !== "" && operator) {
     answer = operate(num1, num2, operator);
+    if (answer.toString().length > 9) {
+      answer = answer.toPrecision(5);
+      answer = (+answer).toPrecision(5 - (answer.toString().length - 9));
+    }
     screen.textContent = answer;
   }
 }
