@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  /* border: 0; */
   text-decoration: none;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   box-sizing: border-box;
@@ -14,6 +13,9 @@
   flex-direction: column;
   width: 420px;
   height: 520px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 50px 0px hsla(0, 0%, 0%, 60%) inset,
+              20px 20px 50px 15px hsl(0, 20%, 20%);
 }
 
 .top {
@@ -77,6 +79,9 @@ button {
   width: 96px;
   height: 50px;
   font-size: 2rem;
+  border-radius: 15px;
+  box-shadow: 3px 3px 2px 0px hsla(0, 0%, 0%, 60%) inset,
+              20px 20px 50px 15px hsl(0, 20%, 20%);
 }
 
 .power button {
@@ -104,26 +109,3 @@ button.add {
 button.on {
   background-color: red;
 }
-
-/* 
-
-.top {
-  background-color: bisque;
-}
-
-.screen {
-  background-color: burlywood;
-}
-
-.power {
-  background-color: lightgreen;
-}
-
-.leftSide {
-  background-color: burlywood;
-}
-.operators {
-  background-color: cornflowerblue;
-}  
-
-*/
