@@ -43,11 +43,11 @@ function operate(num1, num2, operator) {
 function evaluate() {
   if (num1 !== "" && operator === "÷" && num2 === 0) {
     screen.style.fontSize = "2.5rem";
-    screen.textContent = "Haha, nice try: Can't Divide by 0";
+    screen.textContent = "Haha! Nice try! You can't divide by 0, remember?";
     equalsBtn.classList.add("error");
   } else if (!isFinite(operate(num1, num2, operator))) {
     screen.style.fontSize = "2.5rem";
-    screen.textContent = "To Infinity and Beyond!!! (Too large!)";
+    screen.textContent = "To Infinity and Beyond!!! (Waaaaaaaay too big!)";
     equalsBtn.classList.add("error");
   } else if (num1 !== "" && num2 !== "" && operator) {
     answer = operate(num1, num2, operator);
@@ -160,6 +160,30 @@ decimalBtn.addEventListener("click", () => {
   }
 })
 
+sqrtBtn.addEventListener("click", () => {
+  if (screen.textContent !== "" && !(isNaN(+screen.textContent))) {
+    let sqrt = Math.sqrt(+screen.textContent);
+    if (sqrt.toString().length > 9) {
+      if (sqrt < 999999999) {
+        sqrt = sqrt.toPrecision(9);
+        sqrt = (+sqrt).toPrecision(9 - (sqrt.toString().length - 9));
+      } else {
+        sqrt = sqrt.toPrecision(5);
+        sqrt = (+sqrt).toPrecision(5 - (sqrt.toString().length - 9));
+      }
+    }
+    if (operator !== "") {
+      operatorsDiv.classList.remove("chain");
+      screen.textContent = sqrt;
+      num2 = sqrt;
+    } else {
+      equalsBtn.classList.remove("on");
+      screen.textContent = sqrt;
+      num1 = sqrt;
+    }
+  }
+})
+
 percentBtn.addEventListener("click", () => {
   if (screen.textContent !== "" && !(isNaN(+screen.textContent))) {
     let percent = +screen.textContent / 100;
@@ -229,10 +253,6 @@ clearAllBtn.addEventListener("click", () => {
   expressionLog.textContent = "";
 })
 
-
-
-// just to see, for dubugging purposes, not permanent
-
 buttons.forEach((btn) => {
   if (btn != clearAllBtn) {
     btn.addEventListener("click", () => {
@@ -241,4 +261,3 @@ buttons.forEach((btn) => {
     });
   }
 })
-
