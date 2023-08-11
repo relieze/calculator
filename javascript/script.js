@@ -97,6 +97,12 @@ numberBtns.forEach(btn => {
   })
 })
 
+document.querySelector(".zero").addEventListener("click", () => {
+  if (+screen.textContent === 0 && !screen.textContent.includes(".")) {
+    screen.textContent = "0";
+  }
+})
+
 operatorBtns.forEach(btn => {
   btn.addEventListener("click", () => {
     if (num1 !== "" && num2 === "") {                     // only first number exists - regular
@@ -261,3 +267,36 @@ buttons.forEach((btn) => {
     });
   }
 })
+
+document.addEventListener('keydown', (event) => {
+  const key = event.key;
+  if (key === '/') event.preventDefault();
+
+  const keyMappings = {
+    '1': 'one',
+    '2': 'two',
+    '3': 'three',
+    '4': 'four',
+    '5': 'five',
+    '6': 'six',
+    '7': 'seven',
+    '8': 'eight',
+    '9': 'nine',
+    '0': 'zero',
+    '.': 'decimal',
+    '%': 'percent',
+    '+': 'add',
+    '-': 'subtract',
+    '*': 'multiply',
+    '/': 'divide',
+    'Enter': 'equals', 
+    'Backspace': 'clear',
+  };
+
+  const buttonClass = keyMappings[key];
+
+  if (buttonClass) {
+    const button = document.querySelector(`.${buttonClass}`);
+    if (button) button.click(); 
+  }
+});
