@@ -11,7 +11,7 @@ const operatorBtns = document.querySelectorAll(".operators button");
 const equalsBtn = document.querySelector(".equals");
 
 // special buttons
-const decimalBtn = document.querySelector(".point");
+const decimalBtn = document.querySelector(".decimal");
 const sqrtBtn = document.querySelector(".sqrt");
 const percentBtn = document.querySelector(".percent");
 
@@ -143,6 +143,23 @@ equalsBtn.addEventListener("click", () => {
   }
 })
 
+decimalBtn.addEventListener("click", () => {
+  if (Array.from(operatorBtns).some(btn => btn.textContent === screen.textContent)) {
+    screen.textContent =  "0.";
+    num2 = +screen.textContent;
+  } else if (!(isNaN(+screen.textContent)) && !screen.textContent.includes(".")) {
+    if (operator !== "") {
+      operatorsDiv.classList.remove("chain");
+      screen.textContent = screen.textContent === "" ? "0." : screen.textContent + "."
+      num2 = +screen.textContent;
+    } else {
+      equalsBtn.classList.remove("on");
+      screen.textContent = screen.textContent === "" ? "0." : screen.textContent + "."
+      num1 = +screen.textContent;
+    }
+  }
+})
+
 answerBtn.addEventListener("click", () => {
   if (answer !== "") {
     if (operator !== "") {
@@ -160,13 +177,13 @@ answerBtn.addEventListener("click", () => {
 })
 
 clearBtn.addEventListener("click", () => {
-  if (!(isNaN(+screen.textContent)) && +screen.textContent <= 999999999) {
+  if (!(isNaN(+screen.textContent)) && !screen.textContent.includes("e")) {
     if (operator !== "") {
+      operatorsDiv.classList.remove("chain");
       screen.textContent = screen.textContent.slice(0, - 1);
       num2 = screen.textContent !== "" ? +screen.textContent : "";
     } else {
       equalsBtn.classList.remove("on");
-      screen.style.fontSize = "4.5rem";
       screen.textContent = screen.textContent.slice(0, - 1);
       num1 = screen.textContent !== "" ? +screen.textContent : "";
     }
