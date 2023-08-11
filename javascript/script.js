@@ -52,8 +52,13 @@ function evaluate() {
   } else if (num1 !== "" && num2 !== "" && operator) {
     answer = operate(num1, num2, operator);
     if (answer.toString().length > 9) {
-      answer = answer.toPrecision(5);
-      answer = (+answer).toPrecision(5 - (answer.toString().length - 9));
+      if (answer < 999999999) {
+        answer = answer.toPrecision(9);
+        answer = (+answer).toPrecision(9 - (answer.toString().length - 9));
+      } else {
+        answer = answer.toPrecision(5);
+        answer = (+answer).toPrecision(5 - (answer.toString().length - 9));
+      }
     }
     screen.textContent = answer;
   }
@@ -155,7 +160,7 @@ answerBtn.addEventListener("click", () => {
 })
 
 clearBtn.addEventListener("click", () => {
-  if (!(isNaN(+screen.textContent))) {
+  if (!(isNaN(+screen.textContent)) && +screen.textContent <= 999999999) {
     if (operator !== "") {
       screen.textContent = screen.textContent.slice(0, - 1);
       num2 = screen.textContent !== "" ? +screen.textContent : "";
