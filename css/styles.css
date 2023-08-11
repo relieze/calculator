@@ -14,8 +14,8 @@
   width: 420px;
   height: 520px;
   border-radius: 15px;
-  box-shadow: 10px 10px 50px 0px hsla(0, 0%, 0%, 60%) inset,
-              20px 20px 50px 15px hsl(0, 20%, 20%);
+  box-shadow: 10px 10px 50px 0px hsla(0, 0%, 30%, 100%) inset,
+              20px 20px 50px 15px hsl(0, 30%, 20%);
 }
 
 .top {
@@ -45,13 +45,13 @@ p.expression {
   align-items: flex-end;
 }
 
-.power {
+.clears {
   flex-basis: 11%;
   display: flex;
   justify-content: flex-end;
 }
 
-.power p {
+.clears p {
   flex: 1;
   align-self: flex-end;
   margin: 0 0 10px;
@@ -80,10 +80,10 @@ button {
   font-size: 2rem;
   border-radius: 15px;
   box-shadow: 3px 3px 2px 0px hsla(0, 0%, 0%, 60%) inset,
-              20px 20px 50px 15px hsl(0, 20%, 20%);
+              15px 15px 30px 5px hsl(0, 30%, 20%);
 }
 
-.power button {
+.clears button {
   margin: 0 0 5px 6px;
 }
 
@@ -101,10 +101,27 @@ button.add {
 }
 
 
+/* ------ COLORS ------ */
+
 .calculator {
-  background-color: lightblue;
+  background-color: hsl(240, 50%, 75%);
+}
+
+button:not(.number) {
+  background-color: hsl(25, 100%, 55%);
+  color: white;
+}
+
+.operators button, button.equals {
+  background-color: black;
+  color: white;
+}
+
+.clears button {
+  background-color: hsl(205, 100%, 55%);
+  color: white;
 }
 
 button.on {
-  background-color: red;
+  background-color: hsl(0, 100%, 50%);
 }

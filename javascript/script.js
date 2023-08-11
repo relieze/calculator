@@ -14,9 +14,9 @@ const equalsBtn = document.querySelector(".equals");
 const decimalBtn = document.querySelector(".decimal");
 const sqrtBtn = document.querySelector(".sqrt");
 const percentBtn = document.querySelector(".percent");
+const answerBtn = document.querySelector(".answer");
 
 // previous-answer and clear buttons
-const answerBtn = document.querySelector(".answer");
 const clearBtn = document.querySelector(".clear");
 const clearAllBtn = document.querySelector(".clearAll");
 
