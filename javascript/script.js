@@ -160,6 +160,30 @@ decimalBtn.addEventListener("click", () => {
   }
 })
 
+percentBtn.addEventListener("click", () => {
+  if (screen.textContent !== "" && !(isNaN(+screen.textContent))) {
+    let percent = +screen.textContent / 100;
+    if (percent.toString().length > 9) {
+      if (percent < 999999999) {
+        percent = percent.toPrecision(9);
+        percent = (+percent).toPrecision(9 - (percent.toString().length - 9));
+      } else {
+        percent = percent.toPrecision(5);
+        percent = (+percent).toPrecision(5 - (percent.toString().length - 9));
+      }
+    }
+    if (operator !== "") {
+      operatorsDiv.classList.remove("chain");
+      screen.textContent = percent;
+      num2 = percent;
+    } else {
+      equalsBtn.classList.remove("on");
+      screen.textContent = percent;
+      num1 = percent;
+    }
+  }
+})
+
 answerBtn.addEventListener("click", () => {
   if (answer !== "") {
     if (operator !== "") {
