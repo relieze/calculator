@@ -11,7 +11,7 @@ const operatorBtns = document.querySelectorAll(".operators button");
 const equalsBtn = document.querySelector(".equals");
 
 // special buttons
-const decimalBtn = document.querySelector(".clear");
+const decimalBtn = document.querySelector(".point");
 const sqrtBtn = document.querySelector(".sqrt");
 const percentBtn = document.querySelector(".percent");
 
@@ -132,16 +132,30 @@ equalsBtn.addEventListener("click", () => {
 
 answerBtn.addEventListener("click", () => {
   if (answer !== "") {
-  if (operator !== "") {
-    operatorsDiv.classList.remove("chain");
-    screen.textContent = answer;
-    num2 = answer;
-  } else {
-    equalsBtn.classList.remove("on");
-    equalsBtn.classList.remove("error");
-    screen.style.fontSize = "4.5rem";
-    screen.textContent = answer;
-    num1 = answer;
+    if (operator !== "") {
+      operatorsDiv.classList.remove("chain");
+      screen.textContent = answer;
+      num2 = answer;
+    } else {
+      equalsBtn.classList.remove("on");
+      equalsBtn.classList.remove("error");
+      screen.style.fontSize = "4.5rem";
+      screen.textContent = answer;
+      num1 = answer;
+    }
+  }
+})
+
+clearBtn.addEventListener("click", () => {
+  if (!(isNaN(+screen.textContent))) {
+    if (operator !== "") {
+      screen.textContent = screen.textContent.slice(0, - 1);
+      num2 = screen.textContent !== "" ? +screen.textContent : "";
+    } else {
+      equalsBtn.classList.remove("on");
+      screen.style.fontSize = "4.5rem";
+      screen.textContent = screen.textContent.slice(0, - 1);
+      num1 = screen.textContent !== "" ? +screen.textContent : "";
     }
   }
 })
