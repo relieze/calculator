@@ -43,11 +43,11 @@ function operate(num1, num2, operator) {
 function evaluate() {
   if (num1 !== "" && operator === "÷" && num2 === 0) {
     screen.style.fontSize = "2.5rem";
-    screen.textContent = "Haha! Nice try! You can't divide by 0, remember?";
+    screen.textContent = "Haha! Nice try! Can't divide by 0, remember?";
     equalsBtn.classList.add("error");
   } else if (!isFinite(operate(num1, num2, operator))) {
     screen.style.fontSize = "2.5rem";
-    screen.textContent = "To Infinity and Beyond!!! (Waaaaaaaay too big!)";
+    screen.textContent = "To Infinity and Beyond! (Waaaaaaaay too big!)";
     equalsBtn.classList.add("error");
   } else if (num1 !== "" && num2 !== "" && operator) {
     answer = operate(num1, num2, operator);
@@ -270,7 +270,7 @@ buttons.forEach((btn) => {
 
 document.addEventListener('keydown', (event) => {
   const key = event.key;
-  if (key === '/') event.preventDefault();
+  if (key === '/' || key === "Enter") event.preventDefault();
 
   const keyMappings = {
     '1': 'one',

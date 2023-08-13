@@ -1,21 +1,40 @@
-* {
+:root {
+  /* ------ COLORS ------ */
+  --color1: #d8f3dc;
+  --color2: #b7e4c7;
+  --color3: #95d5b2;
+  --color4: #74c69d;
+  --color5: #52b788;
+  --color6: #40916c;
+  --color7: #2d6a4f;
+  --color8: #1b4332;
+  --color9: #081c15;
+}
+
+:root * {
   margin: 0;
   padding: 0;
   text-decoration: none;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   box-sizing: border-box;
+  color: #0A1F0E;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(var(--color9) 25%, var(--color1));
 }
 
 .calculator {
-  margin: 40px auto;
+  margin: 100px auto;
   padding: 10px;
   display: flex;
   flex-direction: column;
   width: 420px;
   height: 520px;
   border-radius: 15px;
-  box-shadow: 10px 10px 50px 0px hsla(0, 0%, 30%, 100%) inset,
-              20px 20px 50px 15px hsl(0, 30%, 20%);
+  box-shadow: 0px 0px 10px 0px hsl(0, 0%, 60%) inset,
+              15px 15px 40px 0px hsl(189, 65%, 16%);
 }
 
 .top {
@@ -37,9 +56,12 @@ p.expression {
 }
 
 .screen {
-  padding: 0 5px 15px 0;
+  margin: 2px 0 15px 0;
+  padding: 0px 3px 0px 2px;
   flex: 1;
   font-size: 4.5rem;
+  border: var(--color9) solid 4px;
+  border-radius: 15px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -54,7 +76,15 @@ p.expression {
 .clears p {
   flex: 1;
   align-self: flex-end;
-  margin: 0 0 10px;
+  margin: 0 5px 10px;
+}
+
+.clears a {
+  color: #00A6FB;
+}
+
+a:hover{
+  color: red;
 }
 
 .input {
@@ -79,8 +109,8 @@ button {
   height: 50px;
   font-size: 2rem;
   border-radius: 15px;
-  box-shadow: 3px 3px 2px 0px hsla(0, 0%, 0%, 60%) inset,
-              15px 15px 30px 5px hsl(0, 30%, 20%);
+  box-shadow: 3px 3px 2px 0px hsl(0, 0%, 20%) inset,
+              3px 3px 3px 0px hsl(189, 65%, 16%);
 }
 
 .clears button {
@@ -104,24 +134,26 @@ button.add {
 /* ------ COLORS ------ */
 
 .calculator {
-  background-color: hsl(240, 50%, 75%);
+  background: linear-gradient(var(--color1) 20%, var(--color6));
+}
+
+.number {
+  background-color: white;
 }
 
 button:not(.number) {
-  background-color: hsl(25, 100%, 55%);
-  color: white;
+  background-color: var(--color7);
+  color: var(--color1);
 }
 
 .operators button, button.equals {
-  background-color: black;
-  color: white;
+  background-color: var(--color9);
 }
 
 .clears button {
-  background-color: hsl(205, 100%, 55%);
-  color: white;
+  background-color: var(--color5);
 }
 
 button.on {
-  background-color: hsl(0, 100%, 50%);
+  background-color: red;
 }
